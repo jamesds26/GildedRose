@@ -1,18 +1,16 @@
+package main.java;
+
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class GildedRose {
 
 	private static List<Item> items = null;
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		
         System.out.println("OMGHAI!");
-		
+                
         items = new ArrayList<Item>();
         items.add(new Item("+5 Dexterity Vest", 10, 20));
         items.add(new Item("Aged Brie", 2, 0));
@@ -21,12 +19,14 @@ public class GildedRose {
         items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
         items.add(new Item("Conjured Mana Cake", 3, 6));
 
-        updateQuality();
-}
-
-
+        new GildedRose(items);
+	}
 	
-    public static void updateQuality()
+	public GildedRose (List<Item> items){
+		updateQuality(items);
+	}
+	
+	public void updateQuality(List<Item> items)
     {
         for (int i = 0; i < items.size(); i++)
         {
