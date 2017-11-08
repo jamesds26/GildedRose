@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 //3. whole list at -1 sellIn		- Once the sell by date has passed, Quality degrades twice as fast / backstage Quality drops to 0 after the concert
 //4. backstage at 10 days			- Quality increases by 2 when there are 10 days or less
 //5. backstage at 5 days			- and by 3 when there are 5 days or less
+//6. brie & backstage at 50 quality	- The Quality of an item is never more than 50
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,5 +117,26 @@ public class GildedRoseTest {
         
         assertEquals(expectedsellIn, items.get(0).getSellIn());
         assertEquals(expectedQuality, items.get(0).getQuality());
+	}
+	
+	@Test
+	public void testupdateQuality_fiftyQualityCap() {
+        items = new ArrayList<Item>();
+        items.add(new Item("Aged Brie", 2, 50));
+        items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 50));
+        items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48));
+        items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49));
+        
+        int[] expectedsellIn = new int[]{1,14,4,9};
+        int[] expectedQuality = new int[]{50,50,50,50};
+                
+        new GildedRose(items);
+        int count = 0;
+        
+        for (Item i : items){
+        	assertEquals(expectedsellIn[count], i.getSellIn());
+        	assertEquals(expectedQuality[count], i.getQuality());
+        	count++;
+        }
 	}
 }
