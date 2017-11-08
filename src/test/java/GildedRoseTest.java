@@ -78,7 +78,7 @@ public class GildedRoseTest {
         items.add(new Item("Conjured Mana Cake", -1, 6));
         
         int[] expectedsellIn = new int[]{-2,-2,-2,-2,-2,-2};
-        int[] expectedQuality = new int[]{18,2,5,0,2};
+        int[] expectedQuality = new int[]{18,1,5,0,2};
         
         new GildedRose(items);
         int count = 0;
@@ -95,17 +95,13 @@ public class GildedRoseTest {
         items = new ArrayList<Item>();
         items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20));
         
-        int[] expectedsellIn = new int[]{9};
-        int[] expectedQuality = new int[]{22};
+        int expectedsellIn = 9;
+        int expectedQuality = 22;
         
         new GildedRose(items);
-        int count = 0;
         
-        for (Item i : items){
-            assertEquals(expectedsellIn[count], i.getSellIn());
-        	assertEquals(expectedQuality[count], i.getQuality());
-        	count++;
-        }
+        assertEquals(expectedsellIn, items.get(0).getSellIn());
+        assertEquals(expectedQuality, items.get(0).getQuality());
 	}
 	
 	@Test
@@ -113,16 +109,12 @@ public class GildedRoseTest {
         items = new ArrayList<Item>();
         items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20));
         
-        int[] expectedsellIn = new int[]{4};
-        int[] expectedQuality = new int[]{23};
+        int expectedsellIn = 4;
+        int expectedQuality = 23;
         
         new GildedRose(items);
-        int count = 0;
         
-        for (Item i : items){
-            assertEquals(expectedsellIn[count], i.getSellIn());
-        	assertEquals(expectedQuality[count], i.getQuality());
-        	count++;
-        }
+        assertEquals(expectedsellIn, items.get(0).getSellIn());
+        assertEquals(expectedQuality, items.get(0).getQuality());
 	}
 }
